@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Auction Homepage</title>
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="assets/css/slider.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="javascript:void(0);">ABC Auction</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <form class="navbar-form navbar-left navbar-input-group" role="search" id="searchForm">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Enter product name">
+                </div>
+                <button type="submit" class="btn btn-default">Search</button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="javascript:void(0)"><span class="glyphicon glyphicon-question-sign"></span> Help</a>
+                </li>
+                <li><a href="javascript:void(0);"><span class="glyphicon glyphicon-user"></span> Login</a></li>
+                <li><a href="javascript:void(0)"><span class="glyphicon glyphicon-shopping-cart"></span> Shopping
+                    cart</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- / Navbar -->
+
+<div class="container">
+
+    <div class="row" id="rowbreadcrumb" style="display: none">
+        <ol class="breadcrumb" id="breadcrumb">
+            <li><a id="homeLink" href="#">Home</a></li>
+            <li class="active">Search results</li>
+        </ol>
+    </div>
+
+    <div class="row">
+        <!-- Featured Products -->
+
+        <div id="featured-product-carousel" class="carousel slide" data-pause="hover" data-wrap="true"
+             data-interval="3000">
+            <ol class="carousel-indicators">
+                <li data-target="#featured-product-carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#featured-product-carousel" data-slide-to="1" class=""></li>
+                <li data-target="#featured-product-carousel" data-slide-to="2" class=""></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img src="assets/img/promo-product-1.jpg" alt="ABC Auction Deals" class="img-responsive center-block">
+                </div>
+                <div class="item">
+                    <img src="assets/img/promo-product-2.jpg" alt="ABC Auction Deals" class="img-responsive center-block">
+                </div>
+                <div class="item">
+                    <img src="assets/img/promo-product-3.jpg" alt="ABC Auction Deals" class="img-responsive center-block">
+                </div>
+            </div>
+
+            <!-- Controls -->
+            <a class="left carousel-control" href="#featured-product-carousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#featured-product-carousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        </div>
+        <!-- / Featured Products -->
+    </div>
+
+    <div class="row" id="custom-search" style="display: none">
+        <form role="form" id="customSearchForm">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <label>Product</label>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                            <p><input type="text" class="form-control"></p>
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                            <p>
+                                <select class="form-control">
+                                    <option></option>
+                                    <option>Class1</option>
+                                    <option>Class2</option>
+                                    <option>Class3</option>
+                                    <option>Class4</option>
+                                    <option>Class5</option>
+                                </select>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <label>Current Prise</label>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div class="input-group"><span class="input-group-addon">$</span><input type="text" class="form-control" id="currentPriceLow" placeholder="Text input" disabled="true"></div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <div class="input-group"><span class="input-group-addon">$</span><input type="text" class="form-control" id="currentPriceHigh" placeholder="Text input" disabled="true"></div>
+                        </div>
+                    </div>
+                    <p></p>
+                    <p><input type="text" value="" data-slider-min="10" data-slider-max="10000" data-slider-step="5" data-slider-value="[2000,8000]" id="sl2"></p>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <label>Max Account Close Date</label>
+                    <div class="input-group date" id="datetimepicker2">
+                        <input type='text' class="form-control" />
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                    <p></p>
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <p><label>Number of binds</label></p>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <p>
+                                <select class="form-control">
+                                    <option></option>
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <button type="submit" class="btn btn-main center-block">Find Now</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <br/><br/>
+    <div class="row">
+        <!-- Featured Products list with thumbnails and description  -->
+        <ul class="list-unstyled" id="items">
+        </ul>
+        <!-- / Featured Products list with thumbnails and description  -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <br/>
+        <a href="javascript:void(0)">Home</a> |
+        <a href="javascript:void(0)">Search</a> |
+        <a href="javascript:void(0)">About Us</a> |
+        <a href="javascript:void(0)">Terms of Service</a>
+        <br/><br/>
+    </footer>
+    <!-- / Footer -->
+
+</div>
+
+<script src="assets/js/jquery-2.1.0.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/moment.js"></script>
+<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
+<script src="assets/js/bootstrap-slider.js"></script>
+<script type="text/javascript">
+        $('#sl2').slider();
+        $('#datetimepicker2').datetimepicker();
+
+        var loadJSONData = function(filename) {
+            if (filename == null) {
+                var jsonFilePath = 'assets/json/featured-products.json';
+                var style = 'col-sm-4';
+            } else {
+                var jsonFilePath = 'assets/json/' + filename;
+                var style = 'col-lg-6 col-md-12 col-sm-12 col-xs-12';
+            }
+
+            $.getJSON(jsonFilePath , function(data) {
+                data.items.forEach(function(entry){
+                    var htmlBlock = '<li class="'+style+'"><div class="col-md-4"><a href="javascript:void(0)"><img src="' +
+                    entry.thumb + '" alt="" class="img-responsive"></a></div><div class="col-md-8"><h2><a href="javascript:void(0)">Item\'s title</a></h2><p><b>Item\'s description:</b>'+
+                    entry.description + '</p></div></li>';
+                    $("#items").append(htmlBlock);
+                });
+            });
+        };
+
+        loadJSONData();
+
+        var submitSearch = function(ev){
+            $("#items").find("li").remove();
+            $("#breadcrumb").find("li").remove();
+            $("#breadcrumb").append(
+                    '<li><a id="homeLink" href="#">Home</a></li>'+
+                    '<li class="active">Search results</li>');
+            $("#homeLink").click(homePage);
+            $("#rowbreadcrumb").show();
+            $("#featured-product-carousel").hide();
+            $("#searchForm").hide();
+            $("#custom-search").show();
+            ev.preventDefault();
+
+            loadJSONData("search-results.json");
+        };
+
+        var homePage = function(){
+            $("#featured-product-carousel").show();
+            $("#searchForm").show();
+            $("#custom-search").hide();
+            $("#rowbreadcrumb").hide();
+            $("#items").find("li").remove();
+
+            loadJSONData();
+        }
+
+        $("#searchForm").submit(submitSearch);
+        $("#customSearchForm").submit(submitSearch);
+        $("#homeLink").click(homePage);
+</script>
+</body>
+</html>
