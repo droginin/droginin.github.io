@@ -136,14 +136,14 @@
 			});
 		}
 
-		/*if (tooltip === 'show') {
+		if (tooltip === 'show') {
 			this.picker.on({
 				mouseenter: $.proxy(this.showTooltip, this),
 				mouseleave: $.proxy(this.hideTooltip, this)
 			});
 		} else {
 			this.tooltip.addClass('hide');
-		}*/
+		}
 	};
 
 	Slider.prototype = {
@@ -177,8 +177,6 @@
 				this.selectionElStyle.width = Math.abs(this.percentage[0] - this.percentage[1]) +'%';
 			}
 			if (this.range) {
-                $('#currentPriceLow').val(this.value[0]);
-                $('#currentPriceHigh').val(this.value[1]);
 				this.tooltipInner.text(
 					this.formater(this.value[0]) + 
 					' : ' + 

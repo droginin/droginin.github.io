@@ -18,7 +18,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="javascript:void(0);">ABC Auction</a>
+            <a class="navbar-brand home-link" href="javascript:void(0);">ABC Auction</a>
         </div>
         <div class="navbar-collapse collapse">
             <form class="navbar-form navbar-left navbar-input-group" role="search" id="searchForm">
@@ -43,7 +43,7 @@
 
     <div class="row" id="rowbreadcrumb" style="display: none">
         <ol class="breadcrumb" id="breadcrumb">
-            <li><a id="homeLink" href="#">Home</a></li>
+            <li><a class="home-link" id="homeLink" href="#">Home</a></li>
             <li class="active">Search results</li>
         </ol>
     </div>
@@ -108,14 +108,14 @@
                     <label>Current Prise</label>
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                            <div class="input-group"><span class="input-group-addon">$</span><input type="text" class="form-control" id="currentPriceLow" placeholder="Text input" disabled="true"></div>
+                            <div class="input-group"><span class="input-group-addon">$</span><input type="text" class="form-control" id="currentPriceLow" disabled="true"></div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                            <div class="input-group"><span class="input-group-addon">$</span><input type="text" class="form-control" id="currentPriceHigh" placeholder="Text input" disabled="true"></div>
+                            <div class="input-group"><span class="input-group-addon">$</span><input type="text" class="form-control" id="currentPriceHigh" disabled="true"></div>
                         </div>
                     </div>
                     <p></p>
-                    <p><input type="text" value="" data-slider-min="10" data-slider-max="10000" data-slider-step="5" data-slider-value="[2000,8000]" id="sl2"></p>
+                    <p><input type="text" value="" data-slider-min="10" data-slider-max="10000" data-slider-step="5" data-slider-value="[2000,8000]" data-slider-tooltip="hide" id="sl2"></p>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                     <label>Max Account Close Date</label>
@@ -130,14 +130,7 @@
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                             <p>
-                                <select class="form-control">
-                                    <option></option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
+                                <input class="form-control" type="number">
                             </p>
                         </div>
 
@@ -152,18 +145,101 @@
         </form>
     </div>
     <br/><br/>
+
     <div class="row">
-        <!-- Featured Products list with thumbnails and description  -->
         <ul class="list-unstyled" id="items">
+            <script id="data-main-template" type="text/x-handlebars-template">
+                {{#each this}}
+                <li class="col-sm-4">
+                    <div class="col-md-4">
+                        <a href="javascript:void(0)"><img src="{{thumb}}" alt="" class="img-responsive"></a>
+                    </div>
+
+                    <div class="product-description-holder col-md-8">
+                        <h2><a href="javascript:void(0)">{{title}}</a></h2>
+
+                        <p>
+                            <b>Item's description:</b> {{description}}
+                        </p>
+                    </div>
+                </li>
+                {{/each}}
+            </script>
+            <script id="data-search-template" type="text/x-handlebars-template">
+                {{#each this}}
+                <li class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xs-4">
+                                    <a href="javascript:void(0)"><img src="{{thumb}}" alt="" class="img-responsive"></a>
+                                </div>
+
+                                <div class="product-description-holder col-md-8 col-sm-8 col-xs-8">
+                                    <h2><a href="javascript:void(0)">{{title}}</a></h2>
+
+                                    <p>
+                                        <b>Item's description:</b> {{description}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-6">
+                                        <p class="text-center"><strong>{{timeleft}}h left</strong></p>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-6">
+                                        <p class="text-center current-time">Today<span></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-6">
+                                        <p class="text-center"><img src="assets/img/glyphicons_free/glyphicons-52-eye-open.png" style="width: 25px; height: 16px;"><strong> {{watchers}}</strong></p>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-6">
+                                        <p class="text-center">Watchers</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-xs-6">
+                                        <p class="text-center"><strong>{{price}}$</strong></p>
+                                    </div>
+                                    <div class="col-md-12 col-sm-12 col-xs-6">
+                                        <p class="text-center">Current price</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                {{/each}}
+            </script>
         </ul>
-        <!-- / Featured Products list with thumbnails and description  -->
     </div>
+    
+    <div class="row" style="display: none" id="dataError">
+        <div class="col-md-12">
+            <p class="text-center"><img src="assets/img/warning.png"></p>
+        </div>
+        <div class="col-md-12">
+            <p class="text-center"><strong>Sory:( Data load error!</strong></p>
+        </div>
+    </div>
+
 
     <!-- Footer -->
     <footer class="text-center">
         <br/>
-        <a href="javascript:void(0)">Home</a> |
-        <a href="javascript:void(0)">Search</a> |
+        <a class="home-link" href="javascript:void(0)">Home</a> |
+        <a class="search-link" href="javascript:void(0)">Search</a> |
         <a href="javascript:void(0)">About Us</a> |
         <a href="javascript:void(0)">Terms of Service</a>
         <br/><br/>
@@ -177,60 +253,7 @@
 <script src="assets/js/moment.js"></script>
 <script src="assets/js/bootstrap-datetimepicker.min.js"></script>
 <script src="assets/js/bootstrap-slider.js"></script>
-<script type="text/javascript">
-        $('#sl2').slider();
-        $('#datetimepicker2').datetimepicker();
-
-        var loadJSONData = function(filename) {
-            if (filename == null) {
-                var jsonFilePath = 'assets/json/featured-products.json';
-                var style = 'col-sm-4';
-            } else {
-                var jsonFilePath = 'assets/json/' + filename;
-                var style = 'col-lg-6 col-md-12 col-sm-12 col-xs-12';
-            }
-
-            $.getJSON(jsonFilePath , function(data) {
-                data.items.forEach(function(entry){
-                    var htmlBlock = '<li class="'+style+'"><div class="col-md-4"><a href="javascript:void(0)"><img src="' +
-                    entry.thumb + '" alt="" class="img-responsive"></a></div><div class="col-md-8"><h2><a href="javascript:void(0)">Item\'s title</a></h2><p><b>Item\'s description:</b>'+
-                    entry.description + '</p></div></li>';
-                    $("#items").append(htmlBlock);
-                });
-            });
-        };
-
-        loadJSONData();
-
-        var submitSearch = function(ev){
-            $("#items").find("li").remove();
-            $("#breadcrumb").find("li").remove();
-            $("#breadcrumb").append(
-                    '<li><a id="homeLink" href="#">Home</a></li>'+
-                    '<li class="active">Search results</li>');
-            $("#homeLink").click(homePage);
-            $("#rowbreadcrumb").show();
-            $("#featured-product-carousel").hide();
-            $("#searchForm").hide();
-            $("#custom-search").show();
-            ev.preventDefault();
-
-            loadJSONData("search-results.json");
-        };
-
-        var homePage = function(){
-            $("#featured-product-carousel").show();
-            $("#searchForm").show();
-            $("#custom-search").hide();
-            $("#rowbreadcrumb").hide();
-            $("#items").find("li").remove();
-
-            loadJSONData();
-        }
-
-        $("#searchForm").submit(submitSearch);
-        $("#customSearchForm").submit(submitSearch);
-        $("#homeLink").click(homePage);
-</script>
+<script src="assets/js/handlebars-v2.0.0.js"></script>
+<script src="assets/js/main.js"></script>
 </body>
 </html>
