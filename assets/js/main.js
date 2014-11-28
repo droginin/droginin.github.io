@@ -12,7 +12,7 @@ var refreshTime = function () {
         minutes = "0" + minutes;
     }
     var currentTime = currentDate.getHours() + ":" + minutes;
-    $(".current-time").find("span").text(currentTime);
+    $(".current-time").find("span").text("Today " + currentTime);
     setTimeout(refreshTime, 1000);
 };
 
